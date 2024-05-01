@@ -1,0 +1,19 @@
+.content-post {
+  margin-top: 15vh;
+  max-width: 90%;
+  padding: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+.no-post{
+    margin-top: 15vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.no-post h2{
+    font-size: 2rem;
+    color: #fff;
+}

@@ -1,0 +1,13 @@
+.content-form {
+    margin-top: 15vh;
+    max-width: 90%;
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
+  }
+
+.content-form h2{
+    text-align: center;
+    font-size: 2rem;
+    color: #fff;
+}

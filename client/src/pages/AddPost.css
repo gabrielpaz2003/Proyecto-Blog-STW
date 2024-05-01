@@ -1,0 +1,11 @@
+.content-form {
+    margin-top: 15vh;
+    max-width: 90%;
+    padding: 20px;
+  }
+
+.content-form h2{
+    margin-left: 50%;
+    font-size: 2rem;
+    color: #fff;
+}
