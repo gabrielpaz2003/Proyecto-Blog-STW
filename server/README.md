@@ -1,21 +1,18 @@
-# API de Blog - Laboratorio 6
+# API de Blog - Proyecto Blog
 
 ## Descripción
-Este proyecto es el backend para una aplicación de blog desarrollada como parte del Laboratorio 6. Permite a los usuarios realizar operaciones CRUD sobre posts de blog, incluyendo crear, listar, actualizar y eliminar posts. Está construido sobre Node.js y Express, y utiliza Swagger para la documentación de la API.
+Este proyecto es el backend para una aplicación de blog desarrollada como parte del Proyecto Blog STW. Permite a los usuarios realizar operaciones CRUD sobre posts de blog, incluyendo crear, listar, actualizar y eliminar posts. Está construido sobre Node.js y Express, y utiliza Swagger para la documentación de la API.
 
 ## Requisitos
 - Node.js
 - NPM
 
 ## Instalación
-1. Clona el repositorio:
-git clone https://github.com/gabrielpaz2003/LAB6-BlogApi.git
-
-2. Navega al directorio del proyecto:
-cd LAB6-BlogApi
+1. Navega al directorio del proyecto:
+cd server
 
 
-3. Instala las dependencias del proyecto:
+2. Instala las dependencias del proyecto:
 npm install
 
 
