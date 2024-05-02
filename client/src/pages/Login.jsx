@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
+import ParticlesBackground from '../components/ParticlesBackground';
 
 function Login() {
     const navigate = useNavigate();
@@ -22,34 +23,37 @@ function Login() {
     }
 
     return (
-        <div className='body'>
-            <div className="login-container">
-            <form onSubmit={handleLogin}>
-                <h2>Login</h2>
-                <div className="input-container">
-                    <input
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                    />
-                    <label>Email</label>
+        <>
+            <ParticlesBackground/>
+            <div className='body'>
+                <div className="login-container">
+                    <form onSubmit={handleLogin}>
+                        <h2>Login</h2>
+                        <div className="input-container">
+                            <input
+                                type="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                required
+                            />
+                            <label>Email</label>
+                        </div>
+                        <div className='input-container'>
+                            <input
+                                type="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                required
+                            />
+                            <label>Password</label>
+                        </div>
+                            
+                        <button type="submit" onClick={handleLoginButton}>Login</button>
+                    </form>
                 </div>
-                <div className='input-container'>
-                    <input
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
-                    <label>Password</label>
-                </div>
-                    
-                <button type="submit" onClick={handleLoginButton}>Login</button>
-
-            </form>
-        </div>
-        </div>
+            </div>
+        </>
+        
         
     );
 }

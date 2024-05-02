@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import EditPostForm from '../components/EditPostForm';
+import ParticlesBackground from '../components/ParticlesBackground';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../components/Footer';
 import NavBar from '../components/NavBar';
@@ -67,17 +68,21 @@ function EditPost() {
     }
 
     return post ? (
-        <div>
-            <NavBar />
-            <div className='content-form'>
-                <h2>Editar Post</h2>
-                <EditPostForm post={post} onSubmit={handleUpdatePost} />
+
+            
+            <div className="add-post-container">
+                <ParticlesBackground/>
+                <NavBar />
+                <div className='content-form'>
+                    <EditPostForm post={post} onSubmit={handleUpdatePost} />
+                </div>
+                <Footer />
             </div>
-            <Footer />
-        </div>
     ) : (
         <p>Post not found.</p>
     );
 }
 
 export default EditPost;
+
+

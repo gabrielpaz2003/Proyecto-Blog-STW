@@ -1,7 +1,7 @@
 *{
     margin: 0;
     padding: 0;
-    font-family: 'Popins', sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 .body{
@@ -10,7 +10,6 @@
     align-items: center;
     width: 100%;
     min-height: 100vh;
-    background: url(../assets/background-image.png) no-repeat;
     background-position: center;
     background-size: cover;
 }
@@ -43,7 +42,7 @@
 
 
 .input-container label{
-    font-family: 'Popins', sans-serif;
+    font-family: 'Roboto', sans-serif;
     position: absolute;
     top: 50%;
     left: 5px;
@@ -63,7 +62,7 @@ input:valid ~ label{
 
 
 .input-container input{
-    font-family: 'Popins', sans-serif;
+    font-family: 'Roboto', sans-serif;
     width: 100%;
     height: 50px;
     background-color: transparent;
@@ -75,18 +74,20 @@ input:valid ~ label{
 }
 
 button{
-    width: 100%;
+    background-color: #f1c40f;
     height: 45px;
-    border-radius: 40px;
-    background-color: white;
+    width: 100%;
+    color: white;
+    padding: 10px 20px;
     border: none;
-    font-weight: bold;
+    border-radius: 20px;
     cursor: pointer;
-    outline: none;
-    font-size: 1rem;
-    transition: .4s;
+    margin-top: 20px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5em;
+    font-weight: bold;
 }
 
 button:hover{
-    opacity: .9;
+    background-color: #f39c12;
 }

@@ -24,6 +24,7 @@ const PostForm = () => {
 
     return (
         <form onSubmit={handleSubmit} className="formStyles">
+            <h2>Crear Post</h2>
             {error && <p>{error}</p>}
             <label className="labelStyles">Título:</label>
             <input

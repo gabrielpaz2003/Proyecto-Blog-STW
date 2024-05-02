@@ -3,7 +3,6 @@ import Media from '../components/Media';
 
 function Admin() {
     const adminStyle = {
-        backgroundColor: 'rgba(30, 30, 30, 1)', // Ajusta los estilos según tus necesidades
         overflow: 'hidden',
         minHeight: '100vh',
         display: 'block',

@@ -18,6 +18,7 @@ const EditPostForm = ({ post, onSubmit }) => {
 
     return (
         <form onSubmit={handleSubmit} className="formStyles">
+            <h2>Editar Post</h2>
             <label className="labelStyles">Título:</label>
             <input
                 type="text"
