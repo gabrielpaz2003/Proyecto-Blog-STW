@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import EditPostForm from '../components/EditPostForm';
 import ParticlesBackground from '../components/ParticlesBackground';
-import { useNavigate } from 'react-router-dom';
 import Footer from '../components/Footer';
 import NavBar from '../components/NavBar';
 
@@ -19,8 +18,13 @@ function EditPost() {
         const fetchPost = async () => {
             setLoading(true);
             setError('');
+            const token = localStorage.getItem('token'); // Obtener el token del localStorage
             try {
-                const response = await fetch(`http://localhost:3000/posts/${postId}`);
+                const response = await fetch(`http://localhost:3000/posts/${postId}`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}` // Incluir el token en el header Authorization
+                    }
+                });
                 if (!response.ok) {
                     throw new Error('Failed to fetch the post');
                 }
@@ -39,11 +43,13 @@ function EditPost() {
 
     const handleUpdatePost = async (updatedPost) => {
         setLoading(true);
+        const token = localStorage.getItem('token'); // Obtener el token del localStorage
         try {
             const response = await fetch(`http://localhost:3000/posts/${postId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}` // Incluir el token en el header Authorization
                 },
                 body: JSON.stringify(updatedPost)
             });
@@ -51,11 +57,11 @@ function EditPost() {
                 throw new Error('Failed to update the post');
             }
             alert('Post actualizado correctamente');
+            navigate('/post'); // Redirigir al usuario después de la actualización exitosa
         } catch (err) {
-            alert(`Failed to update post: ${err.message}`);
+            setError(`Failed to update post: ${err.message}`);
         } finally {
             setLoading(false);
-            navigate('/post');
         }
     };
 
@@ -68,21 +74,17 @@ function EditPost() {
     }
 
     return post ? (
-
-            
-            <div className="add-post-container">
-                <ParticlesBackground/>
-                <NavBar />
-                <div className='content-form'>
-                    <EditPostForm post={post} onSubmit={handleUpdatePost} />
-                </div>
-                <Footer />
+        <div className="add-post-container">
+            <ParticlesBackground/>
+            <NavBar />
+            <div className='content-form'>
+                <EditPostForm post={post} onSubmit={handleUpdatePost} />
             </div>
+            <Footer />
+        </div>
     ) : (
         <p>Post not found.</p>
     );
 }
 
 export default EditPost;
-
-

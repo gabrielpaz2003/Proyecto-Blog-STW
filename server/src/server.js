@@ -3,8 +3,11 @@
 // Configuaciones del Servidor
 const PORT = 3000
 const express = require('express')
+const { authenticateToken } = require('./middleware/jwt.js');
 const app = express()
 const cors = require('cors')
+const jwt = require('jsonwebtoken');
+const JWT_SECRET = process.env.JWT_SECRET || 'your_very_secret_key';
 
 app.use(express.json())
 app.use(cors())
@@ -203,8 +206,19 @@ app.use(
  *         content: Contenido del post
  */
 
+app.post('/login', (req, res) => {
+  const { username, password } = req.body;
+  // Aquí deberías validar las credenciales contra tu base de datos o algún almacenamiento
+  if (username === 'admin' && password === 'password') {  // Sustituye esto con tu lógica de autenticación real
+      const token = jwt.sign({ username }, JWT_SECRET, { expiresIn: '24h' });
+      return res.status(200).json({ token });
+  } else {
+      return res.status(401).send('Credenciales incorrectas');
+  }
+});
+
 // Endpoint para obtener todos los posts de la base de datos
-app.get('/posts', async (req, res) => {
+app.get('/posts', authenticateToken, async (req, res) => {
   req.payload = null;
   const registro = {
     fecha: new Date().toISOString(),
@@ -229,7 +243,7 @@ app.get('/posts', async (req, res) => {
 });
 
 // Enpoint para obtener un post especifico
-app.get('/posts/:id', async (req, res) => {
+app.get('/posts/:id',authenticateToken, async (req, res) => {
   const logEntry = {
     fecha: new Date().toISOString(),
     ruta: '/posts/:id',
@@ -254,7 +268,7 @@ app.get('/posts/:id', async (req, res) => {
 })
 
 // Endpoint para crear un post
-app.post('/posts', async (req, res) => {
+app.post('/posts',authenticateToken, async (req, res) => {
   const logEntry = {
     fecha: new Date().toISOString(),
     ruta: '/posts',
@@ -300,7 +314,7 @@ app.post('/posts', async (req, res) => {
 
 
 // Endpoint para actualizar un post
-app.put('/posts/:id', async (req, res) => {
+app.put('/posts/:id',authenticateToken, async (req, res) => {
   const logEntry = {
     fecha: new Date().toISOString(),
     ruta: '/posts/:id',
@@ -345,7 +359,7 @@ app.put('/posts/:id', async (req, res) => {
 })
 
 // Endpoint para eliminar un post
-app.delete('/posts/:id', async (req, res) => {
+app.delete('/posts/:id',authenticateToken, async (req, res) => {
   const logEntry = {
     fecha: new Date().toISOString(),
     ruta: '/posts/:id',

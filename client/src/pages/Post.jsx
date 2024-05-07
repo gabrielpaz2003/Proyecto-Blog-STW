@@ -13,31 +13,50 @@ function PostPage() {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        fetch('http://localhost:3000/posts')
-            .then(response => {
-                if (!response.ok) throw new Error('Network response was not ok');
-                return response.json();
-            })
-            .then(data => {
-                setPosts(data);
-                setLoading(false);
-            })
-            .catch(err => {
-                setError(err.message);
-                setLoading(false);
-            });
-    }, []);
+        const token = localStorage.getItem('token');
+        fetch('http://localhost:3000/posts', {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+        .then(response => {
+            handleAuthErrors(response, navigate); // Manejar errores antes de procesar la respuesta
+            if (!response.ok) throw new Error('Network response was not ok');
+            return response.json();
+        })
+        .then(data => {
+            setPosts(data);
+            setLoading(false);
+        })
+        .catch(err => {
+            setError(err.message);
+            setLoading(false);
+        });
+    }, [navigate]);
 
     const handleDelete = (postId) => {
-        // Aquí puedes añadir una llamada a la API para eliminar el post
-        fetch(`http://localhost:3000/posts/${postId}`, { method: 'DELETE' })
-            .then(response => {
-                if (!response.ok) throw new Error('Error al eliminar el post');
-                alert('Post eliminado con éxito');
-                // Filtrar el post eliminado del estado
-                setPosts(currentPosts => currentPosts.filter(post => post.id !== postId));
-            })
-            .catch(error => alert('Error al eliminar el post: ' + error.message));
+        const token = localStorage.getItem('token');
+        fetch(`http://localhost:3000/posts/${postId}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+        .then(response => {
+            handleAuthErrors(response, navigate); // Manejar errores de autenticación
+            if (!response.ok) throw new Error('Error al eliminar el post');
+            alert('Post eliminado con éxito');
+            setPosts(currentPosts => currentPosts.filter(post => post.id !== postId));
+        })
+        .catch(error => alert('Error al eliminar el post: ' + error.message));
+    };
+
+    const handleAuthErrors = (response, navigate) => {
+        if (response.status === 401 || response.status === 403) { // 401 Unauthorized o 403 Forbidden
+            localStorage.removeItem('token'); // Limpiar el token expirado o inválido
+            navigate('/login'); // Redirigir al usuario a la página de login
+            throw new Error('Session expired or invalid. Please log in again.');
+        }
     };
 
     const handleEdit = (postId) => {
