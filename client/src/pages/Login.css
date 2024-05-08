@@ -43,10 +43,7 @@
 
 .input-container label{
     font-family: 'Roboto', sans-serif;
-    position: absolute;
-    top: 50%;
-    left: 5px;
-    transform: translateY(-50%);
+    
     color: white;
     font-size: 1rem;
     pointer-events: none;

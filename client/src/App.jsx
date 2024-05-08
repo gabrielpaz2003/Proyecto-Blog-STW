@@ -12,7 +12,7 @@ function App() {
         <Router>
             <Suspense fallback={<div>Loading...</div>}>
                 <Routes>
-                    <Route path="/" element={<Login />} />
+                    <Route path="/login" element={<Login />} />
                     <Route path="/admin" element={<Admin />} />
                     <Route path="/post" element={<Post />} />
                     <Route path="/post/add" element={<AddPost />} />
