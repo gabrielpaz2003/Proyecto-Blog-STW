@@ -1,61 +1,63 @@
 'use strict'
-const connection = require('./conn.js') // Importar la conexion de la base de datos
+const connection = require('./conn.js') // Importar la conexión de la base de datos
 const conn = connection.pool
 
-// Funcion para leer todos los Posts
+// Función para leer todos los Posts
 async function leerPosts() {
-  const [rows] = await conn.query('SELECT * FROM Posts')
+  const { rows } = await conn.query('SELECT * FROM Posts')
   return rows
 }
 
-// Funcion para leer un Post especifico
+// Función para leer un Post específico
 async function leerPostEspecifico(id) {
-  const [row] = await conn.query('SELECT * FROM Posts WHERE id = ?', [id])
-  return row
+  const { rows } = await conn.query('SELECT * FROM Posts WHERE id = $1', [id])
+  return rows[0] // Devuelve el primer elemento o undefined si no hay resultados
 }
 
-// Funcion para crear un post
+// Función para crear un post
 async function crearPost(title, content) {
-  const [result] = await conn.query(
-    'INSERT INTO Posts (title, content) VALUES (?, ?)',
+  const { rows } = await conn.query(
+    'INSERT INTO Posts (title, content) VALUES ($1, $2) RETURNING *', // RETURNING * devuelve los valores insertados
     [title, content]
   )
-  return result
+  return rows[0]
 }
 
-// Funcion para crear un post con imagen
+// Función para crear un post con imagen
 async function crearPostConImagen(title, content, image) {
-  const [result] = await conn.query(
-    'INSERT INTO Posts (title, content, image) VALUES (?, ?, ?)',
+  const { rows } = await conn.query(
+    'INSERT INTO Posts (title, content, image) VALUES ($1, $2, $3) RETURNING *',
     [title, content, image]
   )
-  return result
+  return rows[0]
 }
 
-// Funcion para actualizar un post
+// Función para actualizar un post
 async function actualizarPost(id, title, content) {
-  const [result] = await conn.query(
-    'UPDATE Posts SET title = ?, content = ? WHERE id = ?',
+  const { rows } = await conn.query(
+    'UPDATE Posts SET title = $1, content = $2 WHERE id = $3 RETURNING *',
     [title, content, id]
   )
-  return result
+  return rows[0]
 }
 
-// Funcion para actualizar un post con imagen
+// Función para actualizar un post con imagen
 async function actualizarPostConImagen(id, title, content, image) {
-  const [result] = await conn.query(
-    'UPDATE Posts SET title = ?, content = ?, image = ? WHERE id = ?',
+  const { rows } = await conn.query(
+    'UPDATE Posts SET title = $1, content = $2, image = $3 WHERE id = $4 RETURNING *',
     [title, content, image, id]
   )
-  return result
+  return rows[0]
 }
 
-// Funcion para eliminar un post
+// Función para eliminar un post
 async function eliminarPost(id) {
-  const [result] = await conn.query('DELETE FROM Posts WHERE id = ?', [id])
-  return result
+  const { rows } = await conn.query(
+    'DELETE FROM Posts WHERE id = $1 RETURNING *',
+    [id]
+  )
+  return rows[0] // Devuelve el elemento eliminado o undefined si no se eliminó nada
 }
-
 
 // Exportar las funciones al server
 module.exports = {

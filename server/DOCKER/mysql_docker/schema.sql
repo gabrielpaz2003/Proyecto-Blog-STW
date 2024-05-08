@@ -1,16 +1,18 @@
--- Create a database and a user for the blog application
-CREATE DATABASE IF NOT EXISTS blog_db;
-USE blog_db;
+-- Crear la base de datos (esto usualmente se hace fuera del script SQL en PostgreSQL, por ejemplo, usando psql o una interfaz gráfica)
+-- CREATE DATABASE blog_db;
 
--- Create a user and grant privileges
-CREATE USER IF NOT EXISTS 'blog_user'@'%' IDENTIFIED BY 'blog_password';
-GRANT ALL PRIVILEGES ON blog_db.* TO 'blog_user'@'%';
-FLUSH PRIVILEGES;
+-- Conectar a la base de datos (esto se hace desde tu herramienta de administración de base de datos o desde tu aplicación)
+-- \c blog_db
 
--- Create a table for the blog posts
+-- Crear un usuario y asignarle privilegios
+--CREATE USER blog_user WITH ENCRYPTED PASSWORD 'blog_password';
+--GRANT ALL PRIVILEGES ON DATABASE blog_db TO blog_user;
+
+-- Crear la tabla para los posts del blog
 CREATE TABLE IF NOT EXISTS Posts (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
     content TEXT NOT NULL,
     image_64 VARCHAR(255)
 );
+
