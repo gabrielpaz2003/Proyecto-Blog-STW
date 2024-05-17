@@ -20,7 +20,7 @@ npm install
 Para iniciar el servidor, ejecuta:
 npm start
 
-El servidor estará corriendo en `http://localhost:3000`.
+El servidor estará corriendo en `https://proyecto-blog-stw.onrender.com`.
 
 ## Endpoints de la API
 
@@ -63,7 +63,7 @@ El servidor estará corriendo en `http://localhost:3000`.
 
 ## Documentación de la API
 
-La documentación completa de la API, generada con Swagger, está disponible en `http://localhost:3000/api-docs` una vez que el servidor esté en ejecución.
+La documentación completa de la API, generada con Swagger, está disponible en `https://proyecto-blog-stw.onrender.com/api-docs` una vez que el servidor esté en ejecución.
 
 ## Desarrollado por
 
