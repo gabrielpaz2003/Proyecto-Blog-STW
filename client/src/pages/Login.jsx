@@ -12,7 +12,7 @@ function Login() {
     const handleLogin = async (event) => {
         event.preventDefault();  // Evitar que el formulario se envíe de la manera tradicional
         try {
-            const response = await fetch('http://localhost:3000/login', {  // Ajusta la URL según sea necesario
+            const response = await fetch('https://proyecto-blog-stw.onrender.com/login', {  // Ajusta la URL según sea necesario
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

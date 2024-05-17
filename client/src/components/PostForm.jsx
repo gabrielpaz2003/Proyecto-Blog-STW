@@ -9,7 +9,7 @@ const PostForm = () => {
     const { values, handleChange, handleSubmit } = useForm({ title: '', content: '' });
 
     const submitForm = async () => {
-        const result = await request('http://localhost:3000/posts', 'POST', values);
+        const result = await request('https://proyecto-blog-stw.onrender.com/posts', 'POST', values);
 
         if (result) {
             alert('Post agregado correctamente');

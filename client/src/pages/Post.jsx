@@ -14,7 +14,7 @@ function PostPage() {
 
     useEffect(() => {
         const token = localStorage.getItem('token');
-        fetch('http://localhost:3000/posts', {
+        fetch('https://proyecto-blog-stw.onrender.com/posts', {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -36,7 +36,7 @@ function PostPage() {
 
     const handleDelete = (postId) => {
         const token = localStorage.getItem('token');
-        fetch(`http://localhost:3000/posts/${postId}`, {
+        fetch(`https://proyecto-blog-stw.onrender.com/posts/${postId}`, {
             method: 'DELETE',
             headers: {
                 'Authorization': `Bearer ${token}`

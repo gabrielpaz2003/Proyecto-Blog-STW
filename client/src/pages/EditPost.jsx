@@ -20,7 +20,7 @@ function EditPost() {
             setError('');
             const token = localStorage.getItem('token'); // Obtener el token del localStorage
             try {
-                const response = await fetch(`http://localhost:3000/posts/${postId}`, {
+                const response = await fetch(`https://proyecto-blog-stw.onrender.com/posts/${postId}`, {
                     headers: {
                         'Authorization': `Bearer ${token}` // Incluir el token en el header Authorization
                     }
@@ -45,7 +45,7 @@ function EditPost() {
         setLoading(true);
         const token = localStorage.getItem('token'); // Obtener el token del localStorage
         try {
-            const response = await fetch(`http://localhost:3000/posts/${postId}`, {
+            const response = await fetch(`https://proyecto-blog-stw.onrender.com/posts/${postId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

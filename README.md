@@ -33,4 +33,4 @@ npm run dev
 
 ## Uso
 
-El backend soporta múltiples endpoints para gestionar posts, accesibles en http://localhost:3000/posts. El frontend puede ser accedido en el puerto que Vite asigne, típicamente http://localhost:3000.
+El backend soporta múltiples endpoints para gestionar posts, accesibles en https://proyecto-blog-stw.onrender.com/posts. El frontend puede ser accedido en el puerto que Vite asigne, típicamente https://proyecto-blog-stw.onrender.com.
